@@ -1,4 +1,4 @@
-module github.com/glanceapp/glance
+module github.com/contafrica/contafrica
 
 go 1.23.6
 

@@ -8,3 +8,13 @@ services:
     ports:
       - 8080:8080
     restart: unless-stopped
+
+  contafrica:
+    container_name: contafrica
+    image: custom-contafrica
+    volumes:
+      - ./config:/app/config
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - 8080:8080
+    restart: unless-stopped

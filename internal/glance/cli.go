@@ -24,7 +24,7 @@ type cliOptions struct {
 func parseCliOptions() (*cliOptions, error) {
 	flags := flag.NewFlagSet("", flag.ExitOnError)
 	flags.Usage = func() {
-		fmt.Println("Usage: glance [options] command")
+		fmt.Println("Usage: contafrica [options] command")
 
 		fmt.Println("\nOptions:")
 		flags.PrintDefaults()
@@ -34,7 +34,7 @@ func parseCliOptions() (*cliOptions, error) {
 		fmt.Println("  config:print        Print the parsed config file with embedded includes")
 		fmt.Println("  diagnose            Run diagnostic checks")
 	}
-	configPath := flags.String("config", "glance.yml", "Set config path")
+	configPath := flags.String("config", "config.yml", "Set config path")
 	err := flags.Parse(os.Args[1:])
 	if err != nil {
 		return nil, err

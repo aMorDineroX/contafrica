@@ -1,0 +1,28 @@
+# ContAfrica Configuration File
+
+server:
+  port: 8080
+
+branding:
+  title: "ContAfrica Dashboard"  # Changez ce titre selon vos préférences
+  hide-footer: false  # Cacher le pied de page
+  custom-footer: |
+    <div class="footer-content">
+      <div class="footer-links">
+        <a href="https://github.com/aMorDineroX" target="_blank" rel="noreferrer">GitHub</a>
+        <span class="footer-divider">|</span>
+        <a href="#" id="privacy-link">Privacy Policy</a>
+        <span class="footer-divider">|</span>
+        <a href="#" id="terms-link">Terms of Service</a>
+      </div>
+      <div class="footer-copyright">
+        &copy; 2024 aMorDineroX. All rights reserved.
+      </div>
+    </div>
+
+# Pages incluses depuis d'autres fichiers
+pages:
+  !include: home.yml
+  !include: mor.yml
+  !include: morecontent.yml
+  !include: outils.yml

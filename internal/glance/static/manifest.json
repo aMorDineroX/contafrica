@@ -1,5 +1,6 @@
 {
-    "name": "Mon Dashboard Personnalisé",
+    "name": "ContAfrica Dashboard",
+    "short_name": "ContAfrica",
     "display": "standalone",
     "background_color": "#151519",
     "scope": "/",

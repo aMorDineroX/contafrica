@@ -46,11 +46,11 @@ func (widget *dockerContainersWidget) Render() template.HTML {
 }
 
 const (
-	dockerContainerLabelHide        = "glance.hide"
-	dockerContainerLabelName        = "glance.name"
-	dockerContainerLabelURL         = "glance.url"
-	dockerContainerLabelDescription = "glance.description"
-	dockerContainerLabelSameTab     = "glance.same-tab"
+	dockerContainerLabelHide        = "contafrica.hide"
+	dockerContainerLabelName        = "contafrica.name"
+	dockerContainerLabelURL         = "contafrica.url"
+	dockerContainerLabelDescription = "contafrica.description"
+	dockerContainerLabelSameTab     = "contafrica.same-tab"
 	dockerContainerLabelIcon        = "glance.icon"
 	dockerContainerLabelID          = "glance.id"
 	dockerContainerLabelParent      = "glance.parent"

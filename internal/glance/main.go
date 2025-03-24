@@ -143,8 +143,8 @@ func serveUpdateNoticeIfConfigLocationNotMigrated(configPath string) bool {
 		return false
 	}
 
-	// glance.yml wasn't mounted to begin with or was incorrectly mounted as a directory
-	if stat, err := os.Stat("glance.yml"); err != nil || stat.IsDir() {
+	// config.yml wasn't mounted to begin with or was incorrectly mounted as a directory
+	if stat, err := os.Stat("config.yml"); err != nil || stat.IsDir() {
 		return false
 	}
 
@@ -152,8 +152,8 @@ func serveUpdateNoticeIfConfigLocationNotMigrated(configPath string) bool {
 	bodyContents, _ := io.ReadAll(templateFile)
 
 	fmt.Println("!!! WARNING !!!")
-	fmt.Println("The default location of glance.yml in the Docker image has changed starting from v0.7.0.")
-	fmt.Println("Please see https://github.com/glanceapp/glance/blob/main/docs/v0.7.0-upgrade.md for more information.")
+	fmt.Println("The default location of config.yml in the Docker image has changed starting from v0.7.0.")
+	fmt.Println("Please see https://github.com/contafrica/contafrica/blob/main/docs/v0.7.0-upgrade.md for more information.")
 
 	mux := http.NewServeMux()
 	mux.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.FS(staticFS))))
