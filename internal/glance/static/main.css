@@ -2113,3 +2113,17 @@ details[open] .summary::after {
 .list-gap-20        { --list-half-gap: 1rem; }
 .list-gap-24        { --list-half-gap: 1.2rem; }
 .list-gap-34        { --list-half-gap: 1.7rem; }
+
+/* Ajouter à la fin du fichier */
+
+.debug-mode * {
+    outline: 1px solid rgba(255, 0, 0, 0.2);
+}
+
+.debug-mode .widget {
+    outline: 2px solid rgba(0, 255, 0, 0.5);
+}
+
+.debug-mode .page-column {
+    outline: 2px solid rgba(0, 0, 255, 0.5);
+}

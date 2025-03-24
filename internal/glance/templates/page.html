@@ -1,6 +1,6 @@
 {{ template "document.html" . }}
 
-{{ define "document-title" }}{{ .Page.Title }}{{ end }}
+{{ define "document-title" }}{{ .App.Config.Branding.Title }}{{ if ne .Page.Name "" }} - {{ .Page.Name }}{{ end }}{{ end }}
 
 {{ define "document-head-before" }}
 <script>
@@ -72,7 +72,16 @@
     <footer class="footer flex items-center flex-column">
     {{ if eq "" .App.Config.Branding.CustomFooter }}
         <div>
-            <a class="size-h3" href="https://github.com/glanceapp/glance" target="_blank" rel="noreferrer">Glance</a> {{ if ne "dev" .App.Version }}<a class="visited-indicator" title="Release notes" href="https://github.com/glanceapp/glance/releases/tag/{{ .App.Version }}" target="_blank" rel="noreferrer">{{ .App.Version }}</a>{{ else }}({{ .App.Version }}){{ end }}
+            <a class="size-h3" href="https://github.com/aMorDineroX" target="_blank" rel="noreferrer"><footer class="footer flex items-center flex-column">
+    {{ if eq "" .App.Config.Branding.CustomFooter }}
+        <div>
+            <a class="size-h3" href="https://github.com/aMorDineroX" target="_blank" rel="noreferrer">aMorDineroX</a>
+        </div>
+    {{ else }}
+        {{ .App.Config.Branding.CustomFooter }}
+    {{ end }}
+    </footer>
+    {{ end }}</a>
         </div>
     {{ else }}
         {{ .App.Config.Branding.CustomFooter }}

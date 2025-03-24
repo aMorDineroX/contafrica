@@ -4,7 +4,8 @@ server:
   port: 8080
 
 branding:
-  title: "My Glance Dashboard"
+  title: "Mon Dashboard Personnalisé"  # Changez ce titre selon vos préférences
+  hide-footer: false  # Cacher le pied de page
 
 # Pages incluses depuis d'autres fichiers
 pages:

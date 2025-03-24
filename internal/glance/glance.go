@@ -130,6 +130,7 @@ type pageTemplateData struct {
 }
 
 func (a *application) handlePageRequest(w http.ResponseWriter, r *http.Request) {
+	// Cette fonction gère le rendu des pages principales
 	page, exists := a.slugToPage[r.PathValue("page")]
 
 	if !exists {
@@ -154,6 +155,7 @@ func (a *application) handlePageRequest(w http.ResponseWriter, r *http.Request) 
 }
 
 func (a *application) handlePageContentRequest(w http.ResponseWriter, r *http.Request) {
+	// Cette fonction charge le contenu de chaque page
 	page, exists := a.slugToPage[r.PathValue("page")]
 
 	if !exists {
