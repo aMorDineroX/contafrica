@@ -1,0 +1,48 @@
+// ...existing code...
+
+/* Footer styles */
+.footer {
+    padding: 1rem;
+    background-color: #f8f9fa;
+    border-top: 1px solid #e9ecef;
+    color: #6c757d;
+    margin-top: auto;
+}
+
+/* Masquer spécifiquement le texte "Glance (dev)" s'il existe quelque part */
+.footer a[href*="glanceapp"]:contains("Glance"), 
+.footer span:contains("Glance (dev)"), 
+.footer div:contains("Glance (dev)") {
+    display: none !important;
+}
+
+.footer-content {
+    width: 100%;
+    max-width: 1200px;
+    text-align: center;
+}
+
+.footer-links {
+    margin-bottom: 0.5rem;
+}
+
+.footer-links a {
+    color: #6c757d;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.footer-links a:hover {
+    color: #212529;
+    text-decoration: underline;
+}
+
+.footer-divider {
+    margin: 0 0.5rem;
+    color: #dee2e6;
+}
+
+.footer-copyright {
+    font-size: 0.875rem;
+}
+// ...existing code...

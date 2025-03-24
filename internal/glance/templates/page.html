@@ -71,17 +71,18 @@
     {{ if not .App.Config.Branding.HideFooter }}
     <footer class="footer flex items-center flex-column">
     {{ if eq "" .App.Config.Branding.CustomFooter }}
-        <div>
-            <a class="size-h3" href="https://github.com/aMorDineroX" target="_blank" rel="noreferrer"><footer class="footer flex items-center flex-column">
-    {{ if eq "" .App.Config.Branding.CustomFooter }}
-        <div>
-            <a class="size-h3" href="https://github.com/aMorDineroX" target="_blank" rel="noreferrer">aMorDineroX</a>
-        </div>
-    {{ else }}
-        {{ .App.Config.Branding.CustomFooter }}
-    {{ end }}
-    </footer>
-    {{ end }}</a>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="https://github.com/aMorDineroX" target="_blank" rel="noreferrer">GitHub</a>
+                <span class="footer-divider">|</span>
+                <a href="#" id="privacy-link">Privacy Policy</a>
+                <span class="footer-divider">|</span>
+                <a href="#" id="terms-link">Terms of Service</a>
+            </div>
+            <div class="footer-copyright">
+                &copy; {{ now.Year }} aMorDineroX. All rights reserved.
+            </div>
+            <!-- Supprimer toute mention de Glance (dev) ici si nécessaire -->
         </div>
     {{ else }}
         {{ .App.Config.Branding.CustomFooter }}
