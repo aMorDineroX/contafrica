@@ -34,7 +34,7 @@
       widgets:
         - type: group
           widgets:
-            - type: hacker-news
+            - type: hacker
             - type: lobsters
 
         - type: videos
@@ -86,3 +86,22 @@
             - go-gitea/gitea
             - immich-app/immich
             - syncthing/syncthing
+
+# Additional home page widgets
+
+- name: More Content
+  columns:
+    - size: small
+      widgets:
+        - type: weather
+          location: London, United Kingdom
+    
+    - size: full
+      widgets:
+        - type: monitor
+          sites:
+            - title: Google
+              url: https://google.com
+            - title: GitHub
+              url: https://github.com
+              icon: si:github

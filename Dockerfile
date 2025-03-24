@@ -1,16 +1,24 @@
-FROM golang:1.23.6-alpine3.21 AS builder
+FROM golang:1.23-alpine AS builder
 
 WORKDIR /app
-COPY . /app
-RUN CGO_ENABLED=0 go build .
 
-FROM alpine:3.21
+COPY go.mod go.sum ./
+RUN go mod download
+
+COPY . .
+RUN go build -o glance main.go
+
+FROM alpine:latest
 
 WORKDIR /app
-COPY --from=builder /app/glance .
 
-HEALTHCHECK --timeout=10s --start-period=60s --interval=60s \
-  CMD wget --spider -q http://localhost:8080/api/healthz
+COPY --from=builder /app/glance /app/glance
+COPY --from=builder /app/internal/glance/static /app/static
+COPY --from=builder /app/internal/glance/templates /app/templates
 
-EXPOSE 8080/tcp
-ENTRYPOINT ["/app/glance", "--config", "/app/config/glance.yml"]
+RUN mkdir -p /app/config
+
+EXPOSE 8080
+
+# Specify the config path explicitly
+CMD ["/app/glance", "--config", "/app/config/glance.yml"]

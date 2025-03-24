@@ -697,7 +697,7 @@ Display a list of posts from [Hacker News](https://news.ycombinator.com/).
 Example:
 
 ```yaml
-- type: hacker-news
+- type: hacker-news  # 'hacker' can also be used as an alias
   limit: 15
   collapse-after: 5
 ```

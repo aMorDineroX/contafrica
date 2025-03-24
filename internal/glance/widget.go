@@ -35,7 +35,7 @@ func newWidget(widgetType string) (widget, error) {
 		w = &iframeWidget{}
 	case "html":
 		w = &htmlWidget{}
-	case "hacker-news":
+	case "hacker-news", "hacker":
 		w = &hackerNewsWidget{}
 	case "releases":
 		w = &releasesWidget{}

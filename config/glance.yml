@@ -1,12 +1,18 @@
-server:
-  assets-path: /app/assets
+# Glance Configuration File
 
-theme:
-  # Note: assets are cached by the browser, changes to the CSS file
-  # will not be reflected until the browser cache is cleared (Ctrl+F5)
-  custom-css-file: /assets/user.css
+server:
+  port: 8080
+
+branding:
+  title: "My Glance Dashboard"
 
 pages:
-  # It's not necessary to create a new file for each page and include it, you can simply
-  # put its contents here, though multiple pages are easier to manage when separated
-  !include: home.yml
+  - name: Home
+    columns:
+      - size: full
+        widgets:
+          - type: clock
+            
+          - type: hacker-news
+            limit: 15
+            collapse-after: 5
