@@ -10,3 +10,5 @@ branding:
 pages:
   !include: home.yml
   !include: mor.yml
+  !include: morecontent.yml
+  !include: outils.yml
