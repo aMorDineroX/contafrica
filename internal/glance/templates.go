@@ -5,6 +5,7 @@ import (
 	"html/template"
 	"math"
 	"strconv"
+	"time"
 
 	"golang.org/x/text/language"
 	"golang.org/x/text/message"
@@ -51,6 +52,9 @@ var globalTemplateFunctions = template.FuncMap{
 		}
 
 		return template.HTML(value + ` <span class="color-base size-h5">` + label + `</span>`)
+	},
+	"now": func() time.Time {
+		return time.Now()
 	},
 }
 

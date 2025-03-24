@@ -1,4 +1,4 @@
-module github.com/contafrica/contafrica
+module github.com/aMorDineroX/contafrica
 
 go 1.23.6
 

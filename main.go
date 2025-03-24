@@ -3,7 +3,7 @@ package main
 import (
 	"os"
 
-	"github.com/contafrica/contafrica/internal/glance"
+	"github.com/aMorDineroX/contafrica/internal/glance"
 )
 
 func main() {

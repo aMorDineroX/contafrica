@@ -1,0 +1,139 @@
+- name: Widgets Avancés
+  width: wide
+  columns:
+    - size: small
+      widgets:
+        - type: html
+          title: Widget HTML personnalisé
+          source: |
+            <div style="padding: 10px; border-radius: 5px; background: linear-gradient(135deg, hsla(240, 8%, 12%, 0.8), hsla(240, 8%, 10%, 0.8));">
+              <h3 style="color: #f0f0f0; margin-bottom: 10px;">Statistiques personnalisées</h3>
+              <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                <span>Visiteurs aujourd'hui:</span>
+                <span style="font-weight: bold; color: #9ec3ff;">1,245</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                <span>Temps moyen:</span>
+                <span style="font-weight: bold; color: #9ec3ff;">4m 32s</span>
+              </div>
+              <div style="display: flex; justify-content: space-between;">
+                <span>Taux de conversion:</span>
+                <span style="font-weight: bold; color: #9ec3ff;">3.8%</span>
+              </div>
+            </div>
+            
+        - type: iframe
+          title: Intégration Plex
+          source: https://app.plex.tv/desktop/#!/
+          height: 400
+        
+        - type: iframe
+          title: Intégration Grafana
+          source: http://localhost:3000/d/dashboard-id/my-dashboard?orgId=1&refresh=5s
+          height: 300
+        
+    - size: full
+      widgets:
+        - type: custom-api
+          title: Tableau de données dynamique
+          url: https://jsonplaceholder.typicode.com/users
+          template: |
+            <div style="overflow-x: auto;">
+              <table style="width: 100%; border-collapse: collapse; margin: 10px 0;">
+                <thead>
+                  <tr style="border-bottom: 1px solid var(--color-separator);">
+                    <th style="text-align: left; padding: 8px;">ID</th>
+                    <th style="text-align: left; padding: 8px;">Nom</th>
+                    <th style="text-align: left; padding: 8px;">Email</th>
+                    <th style="text-align: left; padding: 8px;">Téléphone</th>
+                    <th style="text-align: left; padding: 8px;">Site Web</th>
+                    <th style="text-align: left; padding: 8px;">Entreprise</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {{ range .JSON.Array "" }}
+                  <tr style="border-bottom: 1px solid var(--color-separator);">
+                    <td style="padding: 8px;">{{ .Int "id" }}</td>
+                    <td style="padding: 8px;">{{ .String "name" }}</td>
+                    <td style="padding: 8px;">{{ .String "email" }}</td>
+                    <td style="padding: 8px;">{{ .String "phone" }}</td>
+                    <td style="padding: 8px;"><a href="https://{{ .String "website" }}" target="_blank">{{ .String "website" }}</a></td>
+                    <td style="padding: 8px;">{{ .Get "company" | .String "name" }}</td>
+                  </tr>
+                  {{ end }}
+                </tbody>
+              </table>
+            </div>
+            
+        - type: iframe
+          title: Intégration Home Assistant
+          source: http://homeassistant.local:8123
+          height: 500
+        
+    - size: small
+      widgets:
+        - type: iframe
+          title: Caméra de surveillance
+          source: http://camera-ip/stream
+          height: 250
+        
+        - type: custom-api
+          title: Météo détaillée
+          url: https://api.open-meteo.com/v1/forecast?latitude=48.8567&longitude=2.3510&current=temperature_2m,precipitation,weathercode&hourly=temperature_2m,precipitation_probability&daily=weathercode,temperature_2m_max,temperature_2m_min,sunrise,sunset&timezone=auto&forecast_days=3
+          template: |
+            <div style="padding: 10px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                <div>
+                  <div class="size-h2 color-highlight">Paris</div>
+                  <div class="size-h4">{{ .JSON.Get "current" | .Float "temperature_2m" }}°C</div>
+                </div>
+                <div style="font-size: 2.5rem;">
+                  {{ if lt (.JSON.Get "current" | .Int "weathercode") 3 }}☀️{{ else if lt (.JSON.Get "current" | .Int "weathercode") 20 }}⛅{{ else if lt (.JSON.Get "current" | .Int "weathercode") 70 }}🌧️{{ else }}⛈️{{ end }}
+                </div>
+              </div>
+              
+              <div style="margin-top: 15px;">
+                <div class="size-h4 color-highlight margin-bottom-5">Prévisions sur 3 jours</div>
+                <div style="display: flex; justify-content: space-between; gap: 10px;">
+                  {{ range $index, $element := .JSON.Get "daily" | .Array "weathercode" }}
+                    {{ if lt $index 3 }}
+                    <div style="text-align: center; flex: 1;">
+                      <div>{{ index ($.JSON.Get "daily" | .Array "temperature_2m_max") $index }}°</div>
+                      <div>{{ if lt $element 3 }}☀️{{ else if lt $element 20 }}⛅{{ else if lt $element 70 }}🌧️{{ else }}⛈️{{ end }}</div>
+                      <div>{{ index ($.JSON.Get "daily" | .Array "temperature_2m_min") $index }}°</div>
+                    </div>
+                    {{ end }}
+                  {{ end }}
+                </div>
+              </div>
+            </div>
+        
+        - type: html
+          title: Raccourcis personnalisés
+          source: |
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
+              <a href="ssh://user@server" style="display: flex; flex-direction: column; align-items: center; text-decoration: none; padding: 10px; border-radius: 5px; background-color: hsla(240, 8%, 12%, 0.5);">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9l6 6"/><path d="M15 9l-6 6"/></svg>
+                <span style="margin-top: 5px;">Terminal</span>
+              </a>
+              <a href="http://nas.local" style="display: flex; flex-direction: column; align-items: center; text-decoration: none; padding: 10px; border-radius: 5px; background-color: hsla(240, 8%, 12%, 0.5);">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16"/><path d="M4 12a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4"/><path d="M4 12a4 4 0 0 0 4 4h8a4 4 0 0 0 4-4"/></svg>
+                <span style="margin-top: 5px;">NAS</span>
+              </a>
+              <a href="http://printer.local" style="display: flex; flex-direction: column; align-items: center; text-decoration: none; padding: 10px; border-radius: 5px; background-color: hsla(240, 8%, 12%, 0.5);">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+                <span style="margin-top: 5px;">Imprimante</span>
+              </a>
+              <a href="http://router.local" style="display: flex; flex-direction: column; align-items: center; text-decoration: none; padding: 10px; border-radius: 5px; background-color: hsla(240, 8%, 12%, 0.5);">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M6 12h0"/><path d="M10 12h0"/><path d="M14 12h0"/></svg>
+                <span style="margin-top: 5px;">Router</span>
+              </a>
+              <a href="http://pihole.local/admin" style="display: flex; flex-direction: column; align-items: center; text-decoration: none; padding: 10px; border-radius: 5px; background-color: hsla(240, 8%, 12%, 0.5);">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m4.9 4.9 14.2 14.2"/></svg>
+                <span style="margin-top: 5px;">Pi-hole</span>
+              </a>
+              <a href="http://truenas.local" style="display: flex; flex-direction: column; align-items: center; text-decoration: none; padding: 10px; border-radius: 5px; background-color: hsla(240, 8%, 12%, 0.5);">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20h20"/><path d="M5 20a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1"/><path d="M10 12a2 2 0 1 1 4 0v4"/><path d="M10 12H8"/></svg>
+                <span style="margin-top: 5px;">TrueNAS</span>
+              </a>
+            </div>

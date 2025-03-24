@@ -10,7 +10,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/glanceapp/glance/pkg/sysinfo"
+	"github.com/aMorDineroX/contafrica/pkg/sysinfo"
 )
 
 var serverStatsWidgetTemplate = mustParseTemplate("server-stats.html", "widget-base.html")

@@ -1,6 +1,6 @@
 {{ template "document.html" . }}
 
-{{ define "document-title" }}{{ .App.Config.Branding.Title }}{{ if ne .Page.Name "" }} - {{ .Page.Name }}{{ end }}{{ end }}
+{{ define "document-title" }}{{ .App.Config.Branding.LogoText }}{{ if ne .Page.Name "" }} - {{ .Page.Name }}{{ end }}{{ end }}
 
 {{ define "document-head-before" }}
 <script>
@@ -82,7 +82,7 @@
             <div class="footer-copyright">
                 &copy; {{ now.Year }} aMorDineroX. All rights reserved.
             </div>
-            <!-- Supprimer toute mention de Glance (dev) ici si nécessaire -->
+            <!-- Supprimer toute mention de ContAfrica (dev) ici si nécessaire -->
         </div>
     {{ else }}
         {{ .App.Config.Branding.CustomFooter }}

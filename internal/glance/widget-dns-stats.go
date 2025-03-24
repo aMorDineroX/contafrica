@@ -266,7 +266,7 @@ type pihole5StatsResponse struct {
 // If the user has query logging disabled it's possible for domains_over_time to be returned as an
 // empty array rather than a map which will prevent unmashalling the rest of the data so we use
 // custom unmarshal behavior to fallback to an empty map.
-// See https://github.com/glanceapp/glance/issues/289
+// See https://github.com/aMorDineroX/contafrica/issues/289
 type pihole5QueriesSeries map[int64]int
 
 func (p *pihole5QueriesSeries) UnmarshalJSON(data []byte) error {

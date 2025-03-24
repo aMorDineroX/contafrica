@@ -1,11 +1,12 @@
-# ContAfrica Configuration File
+# Configuration unifiée de Glance
 
 server:
   port: 8080
 
 branding:
-  title: "ContAfrica Dashboard"  # Changez ce titre selon vos préférences
-  hide-footer: false  # Cacher le pied de page
+  logo-text: "ContAfrica Dashboard"
+  title: "ContAfrica"  # Ajouter cette ligne si vous préférez garder Title
+  hide-footer: false
   custom-footer: |
     <div class="footer-content">
       <div class="footer-links">
@@ -20,9 +21,275 @@ branding:
       </div>
     </div>
 
-# Pages incluses depuis d'autres fichiers
+# Pages configurées directement
 pages:
-  !include: home.yml
-  !include: mor.yml
-  !include: morecontent.yml
-  !include: outils.yml
+  # Page principale
+  - name: Mon Dashboard
+    columns:
+      - size: small
+        widgets:
+          - type: weather
+            location: Paris, France
+            units: metric
+            hour-format: 24h
+          
+          - type: bookmarks
+            groups:
+              - title: Services Essentiels
+                color: 200 70 60
+                links:
+                  - title: Gmail
+                    url: https://mail.google.com
+                    icon: si:gmail
+                  - title: Drive
+                    url: https://drive.google.com
+                    icon: si:googledrive
+                  - title: Calendar
+                    url: https://calendar.google.com
+                    icon: si:googlecalendar
+              - title: Développement
+                color: 140 70 50
+                links:
+                  - title: GitHub
+                    url: https://github.com
+                    icon: si:github
+                  - title: StackOverflow
+                    url: https://stackoverflow.com
+                    icon: si:stackoverflow
+                  - title: CodePen
+                    url: https://codepen.io
+                    icon: si:codepen
+
+      - size: full
+        widgets:
+          - type: monitor
+            title: Mes Services
+            sites:
+              - title: Google
+                url: https://google.com
+                icon: si:google
+              - title: GitHub
+                url: https://github.com
+                icon: si:github
+              - title: YouTube
+                url: https://youtube.com
+                icon: si:youtube
+              - title: Wikipedia
+                url: https://wikipedia.org
+                icon: si:wikipedia
+          
+          - type: docker-containers
+            hide-by-default: false
+
+      - size: small
+        widgets:
+          - type: clock
+            hour-format: 24h
+            timezones:
+              - timezone: America/New_York
+                label: New York
+              - timezone: Europe/London
+                label: Londres
+              - timezone: Asia/Tokyo
+                label: Tokyo
+          
+          - type: markets
+            markets:
+              - symbol: CAC
+                name: CAC 40
+              - symbol: BTC-USD
+                name: Bitcoin
+              - symbol: ETH-USD
+                name: Ethereum
+
+  # Page Marchés et Releases
+  - name: Marchés et Releases
+    columns:
+      - size: full
+        widgets:
+          - type: markets
+            markets:
+              - symbol: SPY
+                name: S&P 500
+              - symbol: BTC-USD
+                name: Bitcoin
+              - symbol: NVDA
+                name: NVIDIA
+              - symbol: AAPL
+                name: Apple
+              - symbol: MSFT
+                name: Microsoft
+
+          - type: releases
+            cache: 1d
+            repositories:
+              - glanceapp/glance
+              - go-gitea/gitea
+              - immich-app/immich
+              - syncthing/syncthing
+  
+  # Page More Content
+  - name: More Content
+    width: wide
+    columns:
+      - size: small
+        widgets:
+          - type: weather
+            location: London, United Kingdom
+            units: metric
+            hour-format: 24h
+            title: Météo Londres
+          
+          - type: bookmarks
+            title: Liens Utiles
+            groups:
+              - title: Productivité
+                color: 180 70 50
+                links:
+                  - title: Notion
+                    url: https://notion.so
+                    icon: si:notion
+                  - title: Trello
+                    url: https://trello.com
+                    icon: si:trello
+                  - title: Slack
+                    url: https://slack.com
+                    icon: si:slack
+              - title: Médias
+                color: 350 70 50
+                links:
+                  - title: Netflix
+                    url: https://netflix.com
+                    icon: si:netflix
+                  - title: Spotify
+                    url: https://spotify.com
+                    icon: si:spotify
+                  - title: YouTube
+                    url: https://youtube.com
+                    icon: si:youtube
+              - title: Professionnels
+                color: 220 70 50
+                links:
+                  - title: LinkedIn
+                    url: https://linkedin.com
+                    icon: si:linkedin
+                  - title: Gmail
+                    url: https://mail.google.com
+                    icon: si:gmail
+                  - title: Google Drive
+                    url: https://drive.google.com
+                    icon: si:googledrive
+          
+          - type: search
+            title: Recherche Web
+            provider: google
+          
+          - type: html
+            title: Mémo Personnel
+            source: |
+              <div class="padding-widget">
+                <h3>Tâches importantes</h3>
+                <ul class="list list-gap-10">
+                  <li>[ ] Projet à terminer</li>
+                  <li>[ ] Réunion à 14h</li>
+                  <li>[ ] Appeler le client</li>
+                </ul>
+              </div>
+      
+      - size: full
+        widgets:
+          - type: monitor
+            title: Services Web Essentiels
+            sites:
+              - title: Google
+                url: https://google.com
+                icon: si:google
+              - title: GitHub
+                url: https://github.com
+                icon: si:github
+              - title: Twitter
+                url: https://twitter.com
+                icon: si:twitter
+              - title: LinkedIn
+                url: https://linkedin.com
+                icon: si:linkedin
+              - title: Amazon
+                url: https://amazon.com
+                icon: si:amazon
+              - title: Facebook
+                url: https://facebook.com
+                icon: si:facebook
+          
+          - type: docker-containers
+            title: Conteneurs Docker
+            hide-by-default: false
+          
+          - type: html
+            title: Performance Système
+            source: |
+              <div class="padding-widget">
+                <h3>Information Système</h3>
+                <p>Cette section afficherait normalement les métriques système.</p>
+                <p>Consultez la documentation pour les widgets de surveillance système disponibles.</p>
+              </div>
+          
+          - type: rss
+            title: Actualités Tech
+            limit: 5
+            cache: 6h
+            feeds:
+              - url: https://www.theverge.com/rss/index.xml
+                title: The Verge
+              - url: https://techcrunch.com/feed/
+                title: TechCrunch
+              - url: https://www.wired.com/feed/rss
+                title: Wired
+      
+      - size: small
+        widgets:
+          - type: clock
+            title: Fuseaux Horaires
+            hour-format: 24h
+            timezones:
+              - timezone: Europe/Paris
+                label: Paris
+              - timezone: Europe/London
+                label: Londres
+              - timezone: America/Los_Angeles
+                label: Los Angeles
+              - timezone: Asia/Tokyo
+                label: Tokyo
+          
+          - type: markets
+            title: Marchés Financiers
+            markets:
+              - symbol: FTSE
+                name: FTSE 100
+              - symbol: BTC-USD
+                name: Bitcoin
+              - symbol: EUR-USD
+                name: Euro/USD
+              - symbol: AAPL
+                name: Apple
+          
+          - type: calendar
+            title: Calendrier
+            first-day-of-week: monday
+          
+          - type: bookmarks
+            title: Autres Dashboards
+            groups:
+              - title: Dashboards
+                color: 150 70 50
+                links:
+                  - title: Grafana
+                    url: http://localhost:3000
+                    icon: si:grafana
+                  - title: Prometheus
+                    url: http://localhost:9090
+                    icon: si:prometheus
+                  - title: Portainer
+                    url: http://localhost:9000
+                    icon: si:portainer
+
+  # Autres pages ici (Outils, Widgets Avancés, etc.)

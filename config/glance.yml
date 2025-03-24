@@ -4,8 +4,8 @@ server:
   port: 8080
 
 branding:
-  title: "Mon Dashboard Personnalisé"  # Changez ce titre selon vos préférences
-  hide-footer: false  # Cacher le pied de page
+  logo-text: "Mon Dashboard Personnalisé"
+  hide-footer: true
   custom-footer: |
     <div class="footer-content">
       <div class="footer-links">
@@ -22,7 +22,8 @@ branding:
 
 # Pages incluses depuis d'autres fichiers
 pages:
-  !include: home.yml
-  !include: mor.yml
-  !include: morecontent.yml
-  !include: outils.yml
+  - !include home.yml
+  - !include mor.yml
+  - !include morecontent.yml
+  - !include outils.yml
+  - !include widgets-avances.yml

@@ -1,0 +1,15 @@
+# Configuration minimale pour tester
+
+server:
+  port: 8080
+
+# Pages définies directement sans inclusions
+pages:
+  - name: Page Test
+    columns:
+      - size: full
+        widgets:
+          - type: weather
+            location: Paris, France
+            units: metric
+            hour-format: 24h
