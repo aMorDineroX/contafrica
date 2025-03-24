@@ -6,13 +6,7 @@ server:
 branding:
   title: "My Glance Dashboard"
 
+# Pages incluses depuis d'autres fichiers
 pages:
-  - name: Home
-    columns:
-      - size: full
-        widgets:
-          - type: clock
-            
-          - type: hacker-news
-            limit: 15
-            collapse-after: 5
+  !include: home.yml
+  !include: mor.yml
