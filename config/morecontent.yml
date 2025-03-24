@@ -1,16 +1,105 @@
 - name: More Content
+  width: wide
   columns:
     - size: small
       widgets:
         - type: weather
           location: London, United Kingdom
+          units: metric
+          hour-format: 24h
+          title: Météo Londres
+        
+        - type: bookmarks
+          title: Liens Utiles
+          groups:
+            - title: Productivité
+              color: 180 70 50
+              links:
+                - title: Notion
+                  url: https://notion.so
+                  icon: si:notion
+                - title: Trello
+                  url: https://trello.com
+                  icon: si:trello
+                - title: Slack
+                  url: https://slack.com
+                  icon: si:slack
+            - title: Médias
+              color: 350 70 50
+              links:
+                - title: Netflix
+                  url: https://netflix.com
+                  icon: si:netflix
+                - title: Spotify
+                  url: https://spotify.com
+                  icon: si:spotify
+                - title: YouTube
+                  url: https://youtube.com
+                  icon: si:youtube
+            - title: Professionnels
+              color: 220 70 50
+              links:
+                - title: LinkedIn
+                  url: https://linkedin.com
+                  icon: si:linkedin
+                - title: Gmail
+                  url: https://mail.google.com
+                  icon: si:gmail
+                - title: Google Drive
+                  url: https://drive.google.com
+                  icon: si:googledrive
     
     - size: full
       widgets:
         - type: monitor
+          title: Services Web Essentiels
           sites:
             - title: Google
               url: https://google.com
+              icon: si:google
             - title: GitHub
               url: https://github.com
               icon: si:github
+            - title: Twitter
+              url: https://twitter.com
+              icon: si:twitter
+            - title: LinkedIn
+              url: https://linkedin.com
+              icon: si:linkedin
+            - title: Amazon
+              url: https://amazon.com
+              icon: si:amazon
+            - title: Facebook
+              url: https://facebook.com
+              icon: si:facebook
+        
+        - type: docker-containers
+          title: Conteneurs Docker
+          hide-by-default: false
+    
+    - size: small
+      widgets:
+        - type: clock
+          title: Fuseaux Horaires
+          hour-format: 24h
+          timezones:
+            - timezone: Europe/Paris
+              label: Paris
+            - timezone: Europe/London
+              label: Londres
+            - timezone: America/Los_Angeles
+              label: Los Angeles
+            - timezone: Asia/Tokyo
+              label: Tokyo
+        
+        - type: markets
+          title: Marchés Financiers
+          markets:
+            - symbol: FTSE
+              name: FTSE 100
+            - symbol: BTC-USD
+              name: Bitcoin
+            - symbol: EUR-USD
+              name: Euro/USD
+            - symbol: AAPL
+              name: Apple
